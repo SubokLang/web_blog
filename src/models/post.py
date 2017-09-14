@@ -13,7 +13,7 @@ class Post():
         self._id = uuid.uuid4().hex if _id is None else _id
 
     def save_to_mongo(self):
-        Database.insert('posts', self.json())
+        Database.insert(collection='posts', data=self.json())
 
     def json(self):
         return {
