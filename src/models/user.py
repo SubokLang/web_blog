@@ -49,7 +49,7 @@ class User():
         session['email'] = None
 
     def get_blogs(self):
-        pass
+        return Blog.find_by_author_id(self._id)
 
     def json(self):
         return{
