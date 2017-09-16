@@ -9,22 +9,17 @@ app.secret_key = "123"
 def hello_method():
     return render_template('login.html')
 
-@app.before_first_request
-def initialize_database():
-    Database.initialize()
-
-
-@app.route('/login', methods=['POST'])
+@app.route('/login')
 def login_user():
     email = request.form['email']
     password = request.form['password']
+    pass
 
-    if User.login_valid(email, password):
-        User.login(email)
-    else:
-        session['email'] = None
+    return render_template('profile.html')
 
-    return render_template("profile.html", email=session['email'])
+@app.before_first_request
+def initialize_database():
+    Database.initialize()
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
